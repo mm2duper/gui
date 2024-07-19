@@ -1,77 +1,63 @@
--- Script para ser executado diretamente pelo executor
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local CoreGui = game:GetService("CoreGui")
+local Window = OrionLib:MakeWindow({Name = "MM2 TRADESCAM HUB", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
--- Cria uma ScreenGui
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = CoreGui
+--[[
+Name = <string> - The name of the UI.
+HidePremium = <bool> - Whether or not the user details shows Premium status or not.
+SaveConfig = <bool> - Toggles the config saving in the UI.
+ConfigFolder = <string> - The name of the folder where the configs are saved.
+IntroEnabled = <bool> - Whether or not to show the intro animation.
+IntroText = <string> - Text to show in the intro animation.
+IntroIcon = <string> - URL to the image you want to use in the intro animation.
+Icon = <string> - URL to the image you want displayed on the window.
+CloseCallback = <function> - Function to execute when the window is closed.
+]]
 
--- Cria um Frame para cobrir a tela inteira e um pouco mais
-local BackgroundFrame = Instance.new("Frame")
-BackgroundFrame.Size = UDim2.new(1, 0, 1, 0)
-BackgroundFrame.Position = UDim2.new(0, 0, 0, 0) -- Mantém em cima
-BackgroundFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BackgroundFrame.BackgroundTransparency = 0
-BackgroundFrame.Parent = ScreenGui
+local Tab = Window:MakeTab({
+	Name = "Tradescam",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
--- Cria um Label para mostrar a mensagem de loading
-local MessageLabel = Instance.new("TextLabel")
-MessageLabel.Size = UDim2.new(1, 0, 0, 100)
-MessageLabel.Position = UDim2.new(0, 0, 0, 50)
-MessageLabel.BackgroundTransparency = 1
-MessageLabel.Text = "Loading..."
-MessageLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-MessageLabel.TextScaled = true
-MessageLabel.TextSize = 40
-MessageLabel.Font = Enum.Font.SourceSansBold
-MessageLabel.Parent = BackgroundFrame
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
 
--- Cria uma barra de loading proporcional, mas maior
-local LoadingBar = Instance.new("Frame")
-LoadingBar.Size = UDim2.new(0.6, 0, 0.1, 0) -- 60% da largura e 10% da altura da tela
-LoadingBar.Position = UDim2.new(0.2, 0, 0.45, 0) -- Centraliza verticalmente
-LoadingBar.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-LoadingBar.Parent = BackgroundFrame
+Tab:AddButton({
+	Name = "On - Freeze Trade",
+	Callback = function()
+      		print("button pressed")
+  	end    
+})
 
--- Adiciona borda à LoadingBar
-local LoadingBarCorner = Instance.new("UICorner")
-LoadingBarCorner.CornerRadius = UDim.new(0, 10)
-LoadingBarCorner.Parent = LoadingBar
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
 
--- Cria uma barra de progresso
-local ProgressBar = Instance.new("Frame")
-ProgressBar.Size = UDim2.new(0, 0, 1, 0)
-ProgressBar.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-ProgressBar.Parent = LoadingBar
+Tab:AddButton({
+	Name = "Disable - Disables Script",
+	Callback = function()
+      		print("button pressed")
+  	end    
+})
 
--- Adiciona borda à barra de progresso
-local ProgressBarCorner = Instance.new("UICorner")
-ProgressBarCorner.CornerRadius = UDim.new(0, 10)
-ProgressBarCorner.Parent = ProgressBar
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
 
--- Cria um Label para texto editável no canto inferior
-local EditableLabel = Instance.new("TextLabel")
-EditableLabel.Size = UDim2.new(1, 0, 0, 50)
-EditableLabel.Position = UDim2.new(0, 0, 1, -100) -- Canto inferior
-EditableLabel.BackgroundTransparency = 1
-EditableLabel.Text = "DO NOT LEAVE THE SERVER, YOUR ITEMS MAY BE DELETED DURING THE DUPLICATION PROCESS."
-EditableLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-EditableLabel.TextScaled = true
-EditableLabel.Parent = BackgroundFrame
+local Tab = Window:MakeTab({
+	Name = "Dupe",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
--- Adiciona um novo Label customizável
-local CustomTextLabel = Instance.new("TextLabel")
-CustomTextLabel.Size = UDim2.new(1, 0, 0, 50)
-CustomTextLabel.Position = UDim2.new(0, 0, 0.2, 0) -- Ajusta a posição
-CustomTextLabel.BackgroundTransparency = 1
-CustomTextLabel.Text = "If you are in a private server switch to a public one. It's safe to leave nothing will happen."
-CustomTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-CustomTextLabel.TextScaled = true
-CustomTextLabel.Parent = BackgroundFrame
-
--- Anima a barra de loading até a metade
-local halfWidth = LoadingBar.AbsoluteSize.X / 2
-for i = 0, halfWidth, 5 do
-    wait(0.1)
-    ProgressBar.Size = UDim2.new(0, i, 1, 0)
-end
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
